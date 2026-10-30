@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  platform: MyString
+  scheduled_at: 2026-10-16 22:50:59
+  caption: MyText
+  reference_url: MyString
+  status: MyString
+  reminder_sent_at: 2026-10-16 22:50:59
+  published_at: 2026-10-16 22:50:59
+
+two:
+  title: MyString
+  platform: MyString
+  scheduled_at: 2026-10-16 22:50:59
+  caption: MyText
+  reference_url: MyString
+  status: MyString
+  reminder_sent_at: 2026-10-16 22:50:59
+  published_at: 2026-10-16 22:50:59

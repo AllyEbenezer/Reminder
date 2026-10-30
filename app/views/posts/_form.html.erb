@@ -1,0 +1,58 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <%= form.label :platform %>
+  <%= form.select :platform, [
+    ["X", "X"],
+    ["Instagram", "Instagram"],
+    ["Facebook", "Facebook"],
+    ["LinkedIn", "LinkedIn"],
+    ["TikTok", "TikTok"]
+  ] %>
+
+  <div>
+    <%= form.label :scheduled_at, style: "display: block" %>
+    <%= form.datetime_field :scheduled_at %>
+  </div>
+
+  <div>
+    <%= form.label :caption, style: "display: block" %>
+    <%= form.textarea :caption %>
+  </div>
+
+  <%= form.label :status %>
+  <%= form.select :status, [
+    ["Planned", "planned"],
+    ["Ready", "ready"],
+    ["Published", "published"]
+  ] %>
+
+  <div>
+    <%= form.label :reminder_sent_at, style: "display: block" %>
+    <%= form.datetime_field :reminder_sent_at %>
+  </div>
+
+  <div>
+    <%= form.label :published_at, style: "display: block" %>
+    <%= form.datetime_field :published_at %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

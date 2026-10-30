@@ -1,0 +1,62 @@
+
+<h1>Schedule Preview</h1>
+
+<p>
+  Review the spreadsheet below before importing your posts.
+</p>
+
+<p>
+  <strong>Columns found:</strong>
+  <%= @headers.size %>
+</p>
+
+<% if @headers.empty? %>
+  <p>No column headings were found.</p>
+<% else %>
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <% @headers.each do |header| %>
+            <th style="padding: 8px; text-align: left;">
+              <%= header.presence || "(Blank heading)" %>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @rows.each do |row| %>
+          <tr>
+            <% @headers.each_index do |index| %>
+              <td style="padding: 8px;">
+                <%= row[index] %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<h2>Automatic Column Detection</h2>
+
+<% if @detected_columns.present? && @detected_columns.any? %>
+  <p>We recognised these columns automatically:</p>
+
+  <ul>
+    <% @detected_columns.each do |field, heading| %>
+      <li>
+        <strong><%= field.to_s.humanize %>:</strong>
+        <%= heading %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>We couldn't automatically recognise any columns yet.</p>
+<% end %>
+
+<p>Showing up to 10 data rows.</p>
+
+<%= link_to "Upload Another File", new_import_path %>
