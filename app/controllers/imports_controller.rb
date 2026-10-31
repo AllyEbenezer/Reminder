@@ -42,13 +42,25 @@ class ImportsController < ApplicationController
       return
     end
 
-    result = read_schedule_file(file.tempfile.path, extension)
+    result = ScheduleImporter.new(
+     file.tempfile.path,
+     extension
+    ).call
 
     @headers = result[:headers]
     @detected_columns = HeaderDetector.detect(@headers)
     @rows = result[:rows].first(PREVIEW_LIMIT)
     @document_text_mode = result[:document_text_mode]
     @extraction_notice = result[:notice]
+    @original_document = nil
+
+    if extension == ".pdf"
+      @original_document = ActiveStorage::Blob.create_and_upload!(
+        io: file.tempfile,
+        filename: file.original_filename,
+        content_type: "application/pdf"
+      )
+    end
 
     render :preview
 

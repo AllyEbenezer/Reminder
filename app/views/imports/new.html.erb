@@ -1,7 +1,9 @@
 <h1>Imports Content Schedule</h1>
 <p>Select your community's Excel schedule to preview it.</p>
 
-<%= form_with url: imports_path, multipart: true do |form| %>
+<%= form_with url: imports_path,
+              multipart: true,
+              data: { turbo: false } do |form| %>
 <div>
     <%= form.label :file, "Schedule file (.xlsx or .csv)"%>
     <%= form.file_field :file, accept: ".xlsx,.xls,.csv,.docx,.txt,.pdf", required: true %>
